@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://beuv4giesaltr"]
 
-[ext_resource type="Script" uid="uid://k6vg84iqdth5" path="res://scripts/pinguim.gd" id="1_5yomi"]
+[ext_resource type="Script" uid="uid://k6vg84iqdth5" path="res://scripts/INIMIGOS/pinguim.gd" id="1_5yomi"]
 [ext_resource type="Texture2D" uid="uid://duxbnb3jros1c" path="res://sprites/penguin.png" id="2_metob"]
 [ext_resource type="Texture2D" uid="uid://b00dlgadj7w01" path="res://sprites/penguin (1).png" id="3_metob"]
 
