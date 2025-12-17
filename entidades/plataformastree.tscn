@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc1kac6l1d31t"]
+
+[ext_resource type="Texture2D" uid="uid://637xtgjugnyx" path="res://tile/kenney_16x16 2.png" id="1_y151o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r2lf"]
+size = Vector2(548, 114)
+
+[sub_resource type="Curve2D" id="Curve2D_q4riq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2003, -1584, 0, 0, 0, 0, 473, -1064, 0, 0, 0, 0, 1642, -556)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_y151o"]
+resource_name = "RESET"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5r2lf"]
+resource_name = "movimento"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5190445, 3),
+"transitions": PackedFloat32Array(2.8284254, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4riq"]
+_data = {
+&"RESET": SubResource("Animation_y151o"),
+&"movimento": SubResource("Animation_5r2lf")
+}
+
+[node name="Plataformastree" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(1642, -556)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(8, 7)
+scale = Vector2(7.6738687, 12.177996)
+texture = ExtResource("1_y151o")
+region_enabled = true
+region_rect = Rect2(74.065994, 1598.116, 78.5, 12.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(13, 6)
+shape = SubResource("RectangleShape2D_5r2lf")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_q4riq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1642, -556)
+progress = 2890.5596
+rotates = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../CharacterBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q4riq")
+}
+autoplay = "movimento"
