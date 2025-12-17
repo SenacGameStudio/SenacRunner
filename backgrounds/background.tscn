@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://2smx5lr7rlhi"]
+
+[ext_resource type="Texture2D" uid="uid://cc7k46p5pku84" path="res://backgrounds/BG_03/Layers/Sky.png" id="2_w4e0d"]
+[ext_resource type="Texture2D" uid="uid://bxvauf61uxg7m" path="res://backgrounds/BG_03/Layers/BG.png" id="3_2xjew"]
+[ext_resource type="Texture2D" uid="uid://c4ye4ixeavq2d" path="res://backgrounds/BG_03/Layers/Middle.png" id="4_hj2br"]
+[ext_resource type="Texture2D" uid="uid://b8lj61s6uj2pt" path="res://backgrounds/BG_03/Layers/Foreground.png" id="5_tao1e"]
+[ext_resource type="Texture2D" uid="uid://bx6lfe4jmd3t3" path="res://backgrounds/BG_03/Layers/Ground_01.png" id="6_u2mlt"]
+[ext_resource type="Texture2D" uid="uid://dmg7nut1ofo6w" path="res://backgrounds/BG_03/Layers/Ground_02.png" id="7_hl0r8"]
+[ext_resource type="PackedScene" uid="uid://cwrdw3le4k6ea" path="res://backgrounds/snow.tscn" id="7_hlcib"]
+
+[node name="Parallax" type="Node2D"]
+
+[node name="Sky" type="Parallax2D" parent="."]
+z_index = -20
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1920, 0)
+repeat_times = 20
+limit_begin = Vector2(0, -10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+z_index = -20
+texture = ExtResource("2_w4e0d")
+
+[node name="BG" type="Parallax2D" parent="."]
+z_index = -19
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1920, 0)
+repeat_times = 20
+limit_begin = Vector2(0, -10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG"]
+z_index = -20
+texture = ExtResource("3_2xjew")
+
+[node name="Middle" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(1920, 0)
+repeat_times = 20
+limit_begin = Vector2(0, -10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="Middle"]
+z_index = -20
+texture = ExtResource("4_hj2br")
+
+[node name="Foreground" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(1920, 0)
+repeat_times = 20
+limit_begin = Vector2(0, -10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="Foreground"]
+z_index = -20
+texture = ExtResource("5_tao1e")
+
+[node name="Ground_1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(1920, 0)
+repeat_times = 20
+limit_begin = Vector2(0, -10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground_1"]
+z_index = -20
+texture = ExtResource("6_u2mlt")
+
+[node name="Ground_2" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+repeat_times = 20
+limit_begin = Vector2(0, -10000000)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground_2"]
+z_index = -20
+texture = ExtResource("7_hl0r8")
+
+[node name="snow" parent="." instance=ExtResource("7_hlcib")]
