@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=4 uid="uid://bfp2k5esmtvob"]
+
+[ext_resource type="PackedScene" uid="uid://beuv4giesaltr" path="res://entidades/pinguim.tscn" id="1_37kl0"]
+[ext_resource type="Texture2D" uid="uid://btb5yro4powg" path="res://tiles/mellowautotiles.png" id="2_8uh7m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6uqi0"]
+texture = ExtResource("2_8uh7m")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ppyta"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_6uqi0")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAACcAAAAAAAAAAAABACcAAAABAAAAAAACACcAAAABAAAAAAADACcAAAABAAAAAAAEACcAAAABAAAAAAAFACcAAAABAAAAAAAGACcAAAABAAAAAAAHACcAAAABAAAAAAAIACcAAAABAAAAAAAJACcAAAABAAAAAAAKACcAAAABAAAAAAALACcAAAABAAAAAAAMACcAAAABAAAAAAANACcAAAABAAAAAAAOACcAAAABAAAAAAAPACcAAAABAAAAAAAQACcAAAABAAAAAAARACcAAAABAAAAAAASACcAAAABAAAAAAATACcAAAABAAAAAAAUACcAAAABAAAAAAAVACcAAAABAAAAAAAWACcAAAACAAAAAAANACMAAAADAAAAAAANACQAAAADAAAAAAANACUAAAADAAAAAAANACYAAAADAAAAAAA=")
+tile_set = SubResource("TileSet_ppyta")
+
+[node name="pinguim" parent="." instance=ExtResource("1_37kl0")]
+position = Vector2(254, 613)

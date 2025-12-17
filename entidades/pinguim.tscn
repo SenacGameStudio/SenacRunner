@@ -1,0 +1,136 @@
+[gd_scene load_steps=16 format=3 uid="uid://beuv4giesaltr"]
+
+[ext_resource type="Script" uid="uid://k6vg84iqdth5" path="res://scripts/pinguim.gd" id="1_5yomi"]
+[ext_resource type="Texture2D" uid="uid://duxbnb3jros1c" path="res://sprites/penguin.png" id="2_metob"]
+[ext_resource type="Texture2D" uid="uid://b00dlgadj7w01" path="res://sprites/penguin (1).png" id="3_metob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h12gj"]
+size = Vector2(14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h284b"]
+atlas = ExtResource("2_metob")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxygv"]
+atlas = ExtResource("2_metob")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35app"]
+atlas = ExtResource("2_metob")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttpqp"]
+atlas = ExtResource("2_metob")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_metob"]
+atlas = ExtResource("3_metob")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h12gj"]
+atlas = ExtResource("3_metob")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8u6c"]
+atlas = ExtResource("3_metob")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yomi"]
+atlas = ExtResource("2_metob")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u8u6c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h284b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxygv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35app")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttpqp")
+}],
+"loop": true,
+"name": &"andando",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_metob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h12gj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8u6c")
+}],
+"loop": false,
+"name": &"atacando",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yomi")
+}],
+"loop": true,
+"name": &"parado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfc8t"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgfkh"]
+size = Vector2(9, 1)
+
+[node name="pinguim" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_5yomi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 3)
+shape = SubResource("RectangleShape2D_h12gj")
+
+[node name="AnimacaoInimigo" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_u8u6c")
+animation = &"atacando"
+frame = 2
+frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 3.5)
+shape = SubResource("RectangleShape2D_hfc8t")
+debug_color = Color(0.5838911, 0.5495931, 0.092098124, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["Hurtbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1, -4)
+shape = SubResource("RectangleShape2D_sgfkh")
+debug_color = Color(0.6174491, 0.1976209, 0.7381566, 0.41960785)
+
+[node name="DetectorTerreno" type="RayCast2D" parent="."]
+position = Vector2(10, 0)
+target_position = Vector2(0, 37)
+collision_mask = 4
+
+[node name="DetectorParede" type="RayCast2D" parent="."]
+target_position = Vector2(13, 0)
+collision_mask = 4
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DetectorPlayer" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(53, 0)
+
+[connection signal="animation_finished" from="AnimacaoInimigo" to="." method="_on_animacao_inimigo_animation_finished"]
