@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtdukjhkh0433"]
+
+[ext_resource type="AudioStream" uid="uid://d4ba4cpymt4mn" path="res://musics/christmas-jazz-christmas-holiday-347485.mp3" id="1_mksai"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_mksai")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brldymqtjnubp"]
+
+[ext_resource type="AudioStream" uid="uid://c1470o2w1tfgm" path="res://musics/christmas-silent-street-439890.mp3" id="1_57j6d"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_57j6d")
