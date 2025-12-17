@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ji6n86odhk3d"]
+
+[ext_resource type="Texture2D" uid="uid://xpuffftqr3y7" path="res://tiles/portalRings2.png" id="1_13tmf"]
+[ext_resource type="Script" uid="uid://b114m304kjy0s" path="res://scripts/portal.gd" id="2_gprqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gprqm"]
+size = Vector2(4, 23)
+
+[node name="Portal" type="Area2D" groups=["Portais"]]
+collision_layer = 64
+script = ExtResource("2_gprqm")
+
+[node name="portal" type="Sprite2D" parent="."]
+position = Vector2(0, 5.9604645e-08)
+scale = Vector2(0.85483867, 0.84374994)
+texture = ExtResource("1_13tmf")
+region_enabled = true
+region_rect = Rect2(128.5, 0, 31.5, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gprqm")
+debug_color = Color(1, 0.105882354, 0.3254902, 0.827451)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
