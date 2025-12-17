@@ -10,10 +10,31 @@ config_version=5
 
 [application]
 
-config/name="SenacRunner"
+config/name="SenacRun"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
+[global_group]
+
+Hurtbox=""
+player=""
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Inimigos"
+2d_physics/layer_3="Terreno"
+2d_physics/layer_4="Plataformas"
+2d_physics/layer_5="Perigo"
+2d_physics/layer_6="JumpPad"
+2d_physics/layer_7="Portais"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"

@@ -1,0 +1,156 @@
+[gd_scene load_steps=16 format=3 uid="uid://dxykbf6y2m0bi"]
+
+[ext_resource type="Script" uid="uid://cnwmbhadkcfk2" path="res://scripts/morcego.gd" id="1_ksl4b"]
+[ext_resource type="Texture2D" uid="uid://nyhrqfbbcvjv" path="res://sprites/bat.png" id="1_r6cdb"]
+[ext_resource type="Texture2D" uid="uid://i1v7vkbqe11u" path="res://sprites/32x32-bat-sprite.png" id="3_bygh7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksl4b"]
+size = Vector2(7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjvv5"]
+atlas = ExtResource("1_r6cdb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiils"]
+atlas = ExtResource("3_bygh7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk865"]
+atlas = ExtResource("3_bygh7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpt7n"]
+atlas = ExtResource("3_bygh7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjvv5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjvv5")
+}],
+"loop": true,
+"name": &"parado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiils")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk865")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpt7n")
+}],
+"loop": true,
+"name": &"voando",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbdji"]
+size = Vector2(12, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_thtdd"]
+radius = 81.0
+
+[sub_resource type="Curve2D" id="Curve2D_ksl4b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -63.406166, 0, 63.406166, 0, 256, 64, 0, 0, 0, 0, 320, 0, 64.67429, 0, -64.67429, 0, 256, -64, 0, 0, 0, 0, 0, 0, 64.04023, -0.6340617, -64.04023, 0.6340617, -256, 64, 0, 0, 0, 0, -320, 0, -63.7232, 0, 63.7232, 0, -256, -64, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="Animation" id="Animation_yiils"]
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_bygh7"]
+resource_name = "voando"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hk865"]
+_data = {
+&"RESET": SubResource("Animation_yiils"),
+&"voando": SubResource("Animation_bygh7")
+}
+
+[node name="morcego" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ksl4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ksl4b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+rotation = 0.32082525
+sprite_frames = SubResource("SpriteFrames_sjvv5")
+animation = &"voando"
+autoplay = "voando"
+frame_progress = 0.74513423
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 18
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("RectangleShape2D_lbdji")
+debug_color = Color(0.8980392, 0.53333336, 0.09803922, 0.41960785)
+
+[node name="Detector" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+visible = false
+shape = SubResource("CircleShape2D_thtdd")
+debug_color = Color(0.89210236, 0.31745228, 0.16585267, 0.41960785)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ksl4b")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 0.32082525
+progress = 1464.1073
+rotates = false
+cubic_interp = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../AnimatedSprite2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hk865")
+}
+autoplay = "RESET"
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
